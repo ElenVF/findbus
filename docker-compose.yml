@@ -1,9 +1,32 @@
-version: '2'
+version: '3.8'
 services:
-  php:
-    image: yiisoftware/yii2-php:7.4-apache
-    volumes:
-      - ~/.composer-docker/cache:/root/.composer/cache:delegated
-      - ./:/app:delegated
+  web:
+    networks:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - '8000:80'
+      - "8080:80"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    networks:
+      - postgres
+    image: postgres:14  # Используем образ PostgreSQL
+    restart: always
+    ports:
+      - "5432:5432"  # Порт для PostgreSQL
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Инициализационный SQL файл
+
+networks:
+  postgres:
+    driver: bridge

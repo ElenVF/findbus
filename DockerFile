@@ -1,0 +1,13 @@
+FROM yiisoftware/yii2-php:8.0-apache
+
+# Установка необходимых расширений для PostgreSQL
+RUN docker-php-ext-install pdo pdo_pgsql
+
+# Копируем проект в контейнер
+COPY . /app
+
+# Устанавливаем права на папки
+RUN chown -R www-data:www-data /app/runtime /app/web/assets
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
