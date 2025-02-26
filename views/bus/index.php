@@ -33,7 +33,7 @@ $this->title = 'Поиск автобусов';
         const to = document.querySelector('[name="BusSearch[to]"]').value;
 
         // Формируем URL для запроса
-        const url = '<?= yii\helpers\Url::to(['bus/find-bus']) ?>?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
+        const url = '<?= yii\helpers\Url::to(['api/find-bus']) ?>?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
 
         fetch(url)
             .then(response => response.json())

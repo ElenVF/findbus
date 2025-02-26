@@ -24,8 +24,8 @@ class BusController extends \yii\web\Controller
         Yii::$app->response->format = Yii\web\Response::FORMAT_JSON;
 
         // Находим остановки по названию
-        $fromStop = Stops::find()->where(['name' => $from])->one();
-        $toStop = Stops::find()->where(['name' => $to])->one();
+        $fromStop = Stops::find()->where(['id' => $from])->one();
+        $toStop = Stops::find()->where(['id' => $to])->one();
 
         if (!$fromStop || !$toStop) {
             return [

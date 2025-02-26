@@ -51,7 +51,7 @@ $config = [
     'rules' => [
         'find-bus' => 'bus/index',
         'update-route' => 'bus/update-route',
-        'api/find-bus' => 'bus/index',
+        'api/find-bus' => 'bus/find-bus',
         'api/update-route/<id:d+>' => 'bus/update-route',
     ],
 ],
