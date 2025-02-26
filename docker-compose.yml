@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 
+      POSTGRES_PASSWORD: postgres
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Инициализационный SQL файл
 
