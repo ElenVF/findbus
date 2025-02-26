@@ -3,7 +3,7 @@ FROM yiisoftware/yii2-php:8.0-apache
 
 RUN apt-get update
 # Установка необходимых расширений для PostgreSQL
-RUN apt-get install -y libpq-dev
+RUN  apt-get install -y libpq-dev
 
 # Копируем проект в контейнер
 COPY . /app
