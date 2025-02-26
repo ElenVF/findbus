@@ -2,7 +2,7 @@ version: '3.8'
 services:
   web:
     networks:
-      - postgres
+      - my_network
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
 
   db:
     networks:
-      - postgres
+      - my_network
     image: postgres:14  # Используем образ PostgreSQL
     restart: always
     ports:
@@ -26,7 +26,12 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Инициализационный SQL файл
+      - postgres-db:/var/lib/postgresql/data
 
 networks:
-  postgres:
+  my_network:
     driver: bridge
+
+volumes:
+  postgres-db:
+    driver: local
